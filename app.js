@@ -1,6 +1,14 @@
-function buildPlot(id) {
-    d3.json("data/samples.json").then(data => {
+
+function buildPlot(sample) {
+    d3.json("samples.json").then((data) => {
         console.log(data);
-    })
-}
-buildPlot();
+
+        var metadata = data.metadata;
+        console.log(metadata);
+
+        var filterData = metadata.filter(filtered => filtered.id == sample);
+        console.log(filterData[0]);
+    });
+};
+
+buildPlot(1);
