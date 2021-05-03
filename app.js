@@ -9,16 +9,12 @@ function buildPlot(id) {
         var metadata = data.metadata;
         console.log(metadata);
 
-        // var wfreq w map
-        var wfreq = data.metadata.map(d => d.wfreq);
-        console.log({ wfreq });
+        var samples = data.samples;
+        console.log(samples);
 
-        // filter the sample data by id
-        var sampleData = data.sampleData.filter(s => s.id.toString() === id[0]);
-        console.log(sampleData);
+        var sampleValues = samples.sample_values;
+        console.log(sampleValues);
 
-        // grab top 10
-        var sliceSample = sampleData.sample_values.slice(0, 10).reverse();
     })
 };
 
