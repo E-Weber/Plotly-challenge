@@ -45,14 +45,14 @@ function buildPlot(id) {
 
         // bubble trace
         var bubbleTrace = {
-            x: filtered.otu_ids,
-            y: filtered.sample_values,
+            x: otuID,
+            y: sampleValues,
             mode: "markers",
             marker: {
-                size: filtered.sample_values,
-                color: filtered.otu_ids
+                size: sampleValues,
+                color: otuID
             },
-            text: filtered.otu_labels
+            text: otuLabel
         };
         // Plot!
         Plotly.newPlot("bubble", bubbleTrace);
