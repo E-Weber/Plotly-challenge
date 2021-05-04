@@ -69,16 +69,17 @@ function buildMeta(id) {
         console.log(metaData);
 
         // filter by id
-        var metaFilter = metaData.filter(meta => meta.id.toString() === id)[0];
+        var metaFilter = metaData.filter(meta => meta.id.toString() === id);
 
 
         var select = d3.select("#sample-metaData");
+        console.log(metaData)
 
         // clear
         select.html("");
 
 
-        Object.defineProperties(metaFilter[0]).forEach(([key, value]) => {
+        Object.entries(metaFilter).forEach(([key, value]) => {
             select.append("h5").text(`${key}: ${value}`);
         });
     });
