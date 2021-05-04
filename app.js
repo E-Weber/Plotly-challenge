@@ -10,19 +10,29 @@ function buildPlot(id) {
 
         // otu IDs
         var otuID = data.samples[0].otu_ids;
+        console.log(otuID)
 
-        // grab top 10
+        // grab top 10 labels
         var otuLabel = (data.samples[0].otu_labels.slice(0, 10)).reverse();
+
 
         // convert id to string
         var filtered = data.samples.filter(s => s.id.toString() === id)[0];
 
         // map
         var mapID = otuLabel.map(d => "OTU" + d)
+        console.log(mapID)
 
+        // trace1 array
         var trace1 = {
-            x:
-        }
+            x: sampleValues,
+            y: mapID,
+            orientation: "h",
+        };
+        // create trace
+        var data = [trace1];
+
+        Plotly.newPlot("bar", data);
     })
 };
 
