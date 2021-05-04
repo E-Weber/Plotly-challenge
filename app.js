@@ -43,7 +43,7 @@ function buildPlot(id) {
         Plotly.newPlot("bar", data, layout);
 
 
-        bubble trace
+        //bubble trace
         var bubbleTrace = {
             x: filtered.otu_ids,
             y: filtered.sample_values,
@@ -64,7 +64,8 @@ buildPlot(0);
 
 // new function
 function buildMeta(id) {
-    d3.json("samples.json").then((data => {
+    d3.json("samples.json").then((data) => {
+
         var metaData = data.metadata;
         console.log(metaData);
 
@@ -82,7 +83,7 @@ function buildMeta(id) {
         Object.entries(metaFilter).forEach(([key, value]) => {
             select.append("h6").text(`${key}: ${value}`);
         });
-    }));
+    });
 };
 buildMeta(1);
 
@@ -96,6 +97,7 @@ function init() {
     var select = d3.select("#selDataset");
 
     d3.json("samples.json").then((data) => {
+
         var sNames = data.names;
 
         sNames.forEach((sample) => {
