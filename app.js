@@ -94,14 +94,15 @@ function optionChange(id) {
 };
 
 function init() {
-    var select = d3.select("#selDataset");
+    var dropdown = d3.selectAll("#selDataset");
 
     d3.json("samples.json").then((data) => {
+        console.log(data);
 
         var sNames = data.names;
 
-        sNames.forEach((sample) => {
-            select.append("click").text(sample).property("value", sample);
+        sNames.forEach((name) => {
+            dropdown.append("option").text(name).property("value");
         });
         buildPlot(data.names[0]);
         buildMeta(data.names[0]);
