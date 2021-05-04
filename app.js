@@ -20,7 +20,7 @@ function buildPlot(id) {
         var filtered = data.samples.filter(s => s.id.toString() === id)[0];
 
         // map
-        var mapID = otuLabel.map(d => "OTU" + d)
+        var mapID = otuLabel.map(d => "OTU" + d);
         console.log(mapID)
 
         // trace1 array
@@ -28,12 +28,16 @@ function buildPlot(id) {
             type: "bar",
             x: sampleValues,
             y: mapID,
-            orientation: "h",
+            orientation: "h"
+        }
+        var layout = {
+            title: `Top 10 OTU's`,
         };
         // create trace
         var data = [trace1];
 
-        Plotly.newPlot("bar", data);
+        // plot!
+        Plotly.newPlot("bar", data, layout);
     })
 };
 
