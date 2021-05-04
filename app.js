@@ -56,11 +56,12 @@ function buildPlot(id) {
         };
 
         var bubbleData = [bubbleTrace]
+
         // Plot!
         Plotly.newPlot("bubble", bubbleTrace);
     });
 };
-buildPlot(0);
+
 
 // new function
 function buildMeta(id) {
@@ -81,11 +82,11 @@ function buildMeta(id) {
 
 
         Object.entries(metaFilter).forEach(([key, value]) => {
-            select.append("h6").text(`${key}: ${value}`);
+            select.append("h5").text(`${key}: ${value}`);
         });
     });
 };
-buildMeta(1);
+
 
 // change event function
 function optionChange(id) {
