@@ -82,7 +82,7 @@ function buildMeta(id) {
 
 
         Object.entries(metaFilter).forEach((key) => {
-            selectInfo.append("h5").text(key[0]);
+            selectInfo.append("h3").text(key[0]);
         });
     });
 };
