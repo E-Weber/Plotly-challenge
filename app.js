@@ -32,6 +32,8 @@ function buildPlot(id) {
         }
         var layout = {
             title: `Top 10 OTU's`,
+            xaxis: { title: "Frequency" },
+            yaxis: { title: "OTU Type" }
         };
         // create trace
         var data = [trace1];
@@ -39,6 +41,13 @@ function buildPlot(id) {
         // plot!
         Plotly.newPlot("bar", data, layout);
     })
+
+    // bubble trace
+    var bubbleTrace = {
+        x: samples.otu_ids,
+        y: samples.sample_values,
+        mode
+    }
 };
 
 buildPlot(1);
