@@ -60,19 +60,19 @@ function buildPlot(id) {
         // Plotly.newPlot("bubble", bubbleTrace);
     });
 };
-buildPlot(1);
+buildPlot(0);
 
 // new function
 function buildMeta(id) {
-    d3.json("samples.json").then(data => {
+    d3.json("samples.json").then((data => {
         var metaData = data.metadata;
         console.log(metaData);
 
         // filter by id
-        var metaFilter = metaData.filter(meta => meta.id.toString() === id);
+        var metaFilter = metaData.filter(meta => meta.id == id[0]);
 
 
-        var select = d3.select("#sample-metaData");
+        var select = d3.select("#sample-metadata");
         console.log(metaData)
 
         // clear
@@ -80,8 +80,19 @@ function buildMeta(id) {
 
 
         Object.entries(metaFilter).forEach(([key, value]) => {
-            select.append("h5").text(`${key}: ${value}`);
+            select.append("h6").text(`${key}: ${value}`);
         });
-    });
+    }));
 };
-buildMeta(1)
+buildMeta(1);
+
+// change event function
+function optionChange(id) {
+    buildPlot(id);
+    buildMeta(id);
+};
+
+function init() {
+    var select = d3.select("#selDataset");
+
+}
