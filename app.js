@@ -25,6 +25,7 @@ function buildPlot(id) {
 
         // trace1 array
         var trace1 = {
+            type: "bar",
             x: sampleValues,
             y: mapID,
             orientation: "h",
