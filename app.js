@@ -5,16 +5,24 @@ function buildPlot(id) {
     d3.json("samples.json").then((data) => {
         console.log(data);
 
-        // metadata
-        var metadata = data.metadata;
-        console.log(metadata);
+        // grab top 10 sample values
+        var sampleValues = data.samples[0].sample_values.slice(0, 10).reverse();
 
-        var samples = data.samples;
-        console.log(samples);
+        // otu IDs
+        var otuID = data.samples[0].otu_ids;
 
-        var sampleValues = samples.sample_values;
-        console.log(sampleValues);
+        // grab top 10
+        var otuLabel = (data.samples[0].otu_labels.slice(0, 10)).reverse();
 
+        // convert id to string
+        var filtered = data.samples.filter(s => s.id.toString() === id)[0];
+
+        // map
+        var mapID = otuLabel.map(d => "OTU" + d)
+
+        var trace1 = {
+            x:
+        }
     })
 };
 
