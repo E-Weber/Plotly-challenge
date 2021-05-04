@@ -62,3 +62,12 @@ function buildPlot(id) {
 };
 buildPlot(1);
 
+// new function
+function buildMeta(id) {
+    d3.json("samples.json").then(data => {
+        var metaData = data.metadata;
+        console.log(metaData);
+
+
+    });
+};
