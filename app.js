@@ -44,20 +44,20 @@ function buildPlot(id) {
 
 
         // bubble trace
-        var bubbleTrace = {
-            x: filtered.otu_ids,
-            y: filtered.sample_values,
-            mode: "markers",
-            marker: {
-                size: filtered.sample_values,
-                color: filtered.otu_ids
-            },
-            text: filtered.otu_labels,
-        };
+        // var bubbleTrace = {
+        //     x: filtered.otu_ids,
+        //     y: filtered.sample_values,
+        //     mode: "markers",
+        //     marker: {
+        //         size: filtered.sample_values,
+        //         color: filtered.otu_ids
+        //     },
+        //     text: filtered.otu_labels,
+        // };
 
-        var bubbleData = [bubbleTrace]
-        // Plot!
-        Plotly.newPlot("bubble", bubbleTrace);
+        // var bubbleData = [bubbleTrace]
+        // // Plot!
+        // Plotly.newPlot("bubble", bubbleTrace);
     });
 };
 buildPlot(1);
@@ -69,12 +69,18 @@ function buildMeta(id) {
         console.log(metaData);
 
         // filter by id
-        var metaFilter = meta.filter(meta => meta.id.toString() === id)[0];
+        var metaFilter = metaData.filter(meta => meta.id.toString() === id)[0];
 
 
         var select = d3.select("#sample-metaData");
 
         // clear
         select.html("");
+
+
+        Object.defineProperties(metaFilter[0]).forEach(([key, value]) => {
+            select.append("h5").text(`${key}: ${value}`);
+        });
     });
 };
+buildMeta(1)
