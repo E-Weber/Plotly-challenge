@@ -68,6 +68,13 @@ function buildMeta(id) {
         var metaData = data.metadata;
         console.log(metaData);
 
+        // filter by id
+        var metaFilter = meta.filter(meta => meta.id.toString() === id)[0];
 
+
+        var select = d3.select("#sample-metaData");
+
+        // clear
+        select.html("");
     });
 };
