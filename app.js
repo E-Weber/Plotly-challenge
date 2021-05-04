@@ -78,15 +78,15 @@ function buildMeta(id) {
         console.log(selectInfo)
 
         // clear
-        //selectInfo.html("");
+        selectInfo.html("");
 
 
-        Object.entries(metaFilter).forEach(([key, value]) => {
-            selectInfo.append("h5").text(`${key}: ${value}`);
+        Object.entries(metaFilter).forEach((key) => {
+            selectInfo.append("h5").text(key[0]);
         });
     });
 };
-
+buildMeta(0)
 
 // change event function
 function optionChange(id) {
