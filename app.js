@@ -40,14 +40,21 @@ function buildPlot(id) {
 
         // plot!
         Plotly.newPlot("bar", data, layout);
-    })
 
-    // bubble trace
-    var bubbleTrace = {
-        x: samples.otu_ids,
-        y: samples.sample_values,
-        mode
-    }
+
+        // bubble trace
+        var bubbleTrace = {
+            x: data.samples.otu_ids,
+            y: data.samples.sample_values,
+            mode: "markers",
+            marker: {
+                size: data.samples.sample_values,
+                color: data.samples.otu_ids
+            },
+            text: data.samples.otu_labels
+        };
+        Plotly.newPlot("bubble", bubbleTrace);
+    });
 };
 
 buildPlot(1);
