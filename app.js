@@ -58,7 +58,7 @@ function buildPlot(id) {
         var bubbleData = [bubbleTrace]
 
         // Plot!
-        Plotly.newPlot("bubble", bubbleTrace);
+        Plotly.newPlot("bubble", bubbleData);
     });
 };
 
@@ -74,15 +74,15 @@ function buildMeta(id) {
         var metaFilter = metaData.filter(meta => meta.id.toString() == id[0]);
 
 
-        var select = d3.select("#sample-metadata");
-        console.log(metaData)
+        var selectInfo = d3.select("#sample-metadata");
+        console.log(selectInfo)
 
         // clear
-        select.html("");
+        //selectInfo.html("");
 
 
         Object.entries(metaFilter).forEach(([key, value]) => {
-            select.append("h5").text(`${key}: ${value}`);
+            selectInfo.append("h5").text(`${key}: ${value}`);
         });
     });
 };
