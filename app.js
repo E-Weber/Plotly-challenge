@@ -29,7 +29,8 @@ function buildPlot(id) {
             x: sampleValues,
             y: mapID,
             orientation: "h"
-        }
+        };
+        // layout
         var layout = {
             title: `Top 10 OTU's`,
             xaxis: { title: "Frequency" },
@@ -44,17 +45,18 @@ function buildPlot(id) {
 
         // bubble trace
         var bubbleTrace = {
-            x: data.samples.otu_ids,
-            y: data.samples.sample_values,
+            x: filtered.otu_ids,
+            y: filtered.sample_values,
             mode: "markers",
             marker: {
-                size: data.samples.sample_values,
-                color: data.samples.otu_ids
+                size: filtered.sample_values,
+                color: filtered.otu_ids
             },
-            text: data.samples.otu_labels
+            text: filtered.otu_labels
         };
+        // Plot!
         Plotly.newPlot("bubble", bubbleTrace);
     });
 };
 
-buildPlot(1);
+buildPlot(2);
