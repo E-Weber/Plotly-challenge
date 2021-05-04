@@ -43,21 +43,21 @@ function buildPlot(id) {
         Plotly.newPlot("bar", data, layout);
 
 
-        // bubble trace
-        // var bubbleTrace = {
-        //     x: filtered.otu_ids,
-        //     y: filtered.sample_values,
-        //     mode: "markers",
-        //     marker: {
-        //         size: filtered.sample_values,
-        //         color: filtered.otu_ids
-        //     },
-        //     text: filtered.otu_labels,
-        // };
+        bubble trace
+        var bubbleTrace = {
+            x: filtered.otu_ids,
+            y: filtered.sample_values,
+            mode: "markers",
+            marker: {
+                size: filtered.sample_values,
+                color: filtered.otu_ids
+            },
+            text: filtered.otu_labels,
+        };
 
-        // var bubbleData = [bubbleTrace]
-        // // Plot!
-        // Plotly.newPlot("bubble", bubbleTrace);
+        var bubbleData = [bubbleTrace]
+        // Plot!
+        Plotly.newPlot("bubble", bubbleTrace);
     });
 };
 buildPlot(0);
@@ -69,7 +69,7 @@ function buildMeta(id) {
         console.log(metaData);
 
         // filter by id
-        var metaFilter = metaData.filter(meta => meta.id == id[0]);
+        var metaFilter = metaData.filter(meta => meta.id.toString() == id[0]);
 
 
         var select = d3.select("#sample-metadata");
@@ -95,4 +95,15 @@ function optionChange(id) {
 function init() {
     var select = d3.select("#selDataset");
 
+    d3.json("samples.json").then((data) => {
+        var sNames = data.names;
+
+        sNames.forEach((sample) => {
+            select.append("click").text(sample).property("value", sample);
+        });
+        buildPlot(data.names[0]);
+        buildMeta(data.names[0]);
+    })
 }
+
+init();
