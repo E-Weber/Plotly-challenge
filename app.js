@@ -30,14 +30,14 @@ function buildPlot(id) {
             y: mapID,
             orientation: "h"
         };
+        // create trace
+        var data = [trace1];
         // layout
         var layout = {
             title: `Top 10 OTU's`,
             xaxis: { title: "Frequency" },
             yaxis: { title: "OTU Type" }
         };
-        // create trace
-        var data = [trace1];
 
         // plot!
         Plotly.newPlot("bar", data, layout);
@@ -45,18 +45,20 @@ function buildPlot(id) {
 
         // bubble trace
         var bubbleTrace = {
-            x: otuID,
-            y: sampleValues,
+            x: filtered.otu_ids,
+            y: filtered.sample_values,
             mode: "markers",
             marker: {
-                size: sampleValues,
-                color: otuID
+                size: filtered.sample_values,
+                color: filtered.otu_ids
             },
-            text: otuLabel
+            text: filtered.otu_labels,
         };
+
+        var bubbleData = [bubbleTrace]
         // Plot!
         Plotly.newPlot("bubble", bubbleTrace);
     });
 };
+buildPlot(1);
 
-buildPlot(2);
