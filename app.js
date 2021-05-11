@@ -86,7 +86,7 @@ function buildMeta(sample) {
 
         Object.entries(metaResult).forEach(([key, value]) => {
             selectInfo.append("h6").text(`${key}: ${value}`);
-            console.log(key, value)
+            console.log(key, value);
         });
     });
 };
