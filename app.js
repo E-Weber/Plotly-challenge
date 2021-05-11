@@ -64,7 +64,7 @@ function buildPlot(id) {
 
 
 // new function
-function buildMeta(id) {
+function buildMeta(sample) {
     d3.json("samples.json").then((data) => {
 
         var metaData = data.metadata;
@@ -72,20 +72,21 @@ function buildMeta(id) {
 
         // filter by id
         var metaFilter = metaData.filter(meta =>
-            meta.id == id);
+            meta.id == sample);
 
         var metaResult = metaFilter[0]
         console.log(metaResult);
 
         var selectInfo = d3.select("#sample-metadata");
-        console.log(selectInfo)
+
 
         // clear
         selectInfo.html("");
 
 
         Object.entries(metaResult).forEach(([key, value]) => {
-            selectInfo.append("#h5").text(`${key}: ${value}`);
+            selectInfo.append("h6").text(`${key}: ${value}`);
+            console.log(key, value)
         });
     });
 };
@@ -94,23 +95,23 @@ function buildMeta(id) {
 // change event function
 function optionChanged(id) {
     buildPlot(id);
-    buildMeta(id);
+    buildMeta(sample);
 };
 
 function init() {
-    var dropdown = d3.selectAll("#selDataset");
+    var dropdown = d3.select("#selDataset");
 
     d3.json("samples.json").then((data) => {
         //console.log(data);
 
-        var sNames = data.names;
+        var sNames = data.names[0];
 
         sNames.forEach((name) => {
             dropdown.append("option").text(name).property("value", name);
         });
 
-        buildPlot(data.names[0]);
-        buildMeta(data.names[0]);
+        buildPlot(sNames);
+        buildMeta(sNames);
     });
 };
 
