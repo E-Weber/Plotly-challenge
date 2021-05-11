@@ -3,14 +3,14 @@ function buildPlot(id) {
 
     //grab json data
     d3.json("samples.json").then((data) => {
-        console.log(data);
+        //console.log(data);
 
         // grab top 10 sample values
         var sampleValues = data.samples[0].sample_values.slice(0, 10).reverse();
 
         // otu IDs
         var otuID = data.samples[0].otu_ids;
-        console.log(otuID)
+        //console.log(otuID)
 
         // grab top 10 labels
         var otuLabel = (data.samples[0].otu_labels.slice(0, 10)).reverse();
@@ -21,7 +21,7 @@ function buildPlot(id) {
 
         // map
         var mapID = otuLabel.map(d => "OTU" + d);
-        console.log(mapID)
+        //console.log(mapID)
 
         // trace1 array
         var trace1 = {
@@ -68,11 +68,14 @@ function buildMeta(id) {
     d3.json("samples.json").then((data) => {
 
         var metaData = data.metadata;
-        console.log(metaData);
+        //console.log(metaData);
 
         // filter by id
-        var metaFilter = metaData.filter(meta => meta.id.toString() == id[0]);
+        var metaFilter = metaData.filter(meta =>
+            meta.id == id);
 
+        var metaResult = metaFilter[0]
+        console.log(metaResult);
 
         var selectInfo = d3.select("#sample-metadata");
         console.log(selectInfo)
@@ -81,15 +84,15 @@ function buildMeta(id) {
         selectInfo.html("");
 
 
-        Object.entries(metaFilter).forEach((key) => {
-            selectInfo.append("#h3").text(key[0]);
+        Object.entries(metaResult).forEach(([key, value]) => {
+            selectInfo.append("#h5").text(`${key}: ${value}`);
         });
     });
 };
-buildMeta(0)
+//buildMeta()
 
 // change event function
-function optionChange(id) {
+function optionChanged(id) {
     buildPlot(id);
     buildMeta(id);
 };
@@ -98,16 +101,17 @@ function init() {
     var dropdown = d3.selectAll("#selDataset");
 
     d3.json("samples.json").then((data) => {
-        console.log(data);
+        //console.log(data);
 
         var sNames = data.names;
 
         sNames.forEach((name) => {
-            dropdown.append("option").text(name).property("value");
+            dropdown.append("option").text(name).property("value", name);
         });
+
         buildPlot(data.names[0]);
         buildMeta(data.names[0]);
-    })
-}
+    });
+};
 
 init();
